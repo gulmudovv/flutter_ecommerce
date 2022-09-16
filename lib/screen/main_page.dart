@@ -3,7 +3,7 @@ import 'package:ecommerce/widgets/search.dart';
 import 'package:ecommerce/widgets/select_category_widget.dart';
 import 'package:ecommerce/widgets/location_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+
 
 import '../models/home_store_model.dart';
 import '../widgets/bestseller_widget.dart';
@@ -18,7 +18,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
 
-  late Map<StoreItem, int> orderItems;
+  late Map<String, int> orderItems;
 
   int shoppingCount =0;
 
@@ -29,7 +29,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Color.fromRGBO(236, 240, 241, 1),
       bottomNavigationBar:BottomNavBar(shoppingItemCount: shoppingCount,),
       body: Container(
 
@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 5,),
+                SizedBox(height: 10,),
                 LocalWidget(),
                 SizedBox(height: 5,),
                 SelectCategoryWidget(),
@@ -56,16 +56,20 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-  addToCart(StoreItem storeItem){
-    if (orderItems.containsKey(storeItem)!=true){
-      orderItems[storeItem] = 1;
+  addToCart(String id){
+    var sum = 0;
+    if (orderItems.containsKey(id)==false){
+      orderItems[id] = 1;
     }else{
-      orderItems[storeItem] = orderItems[storeItem]!+1;
+      orderItems[id] = orderItems[id]!+1;
     }
 
-
+    for (var value in orderItems.values){
+      sum+=value;
+    }
     setState(() {
-      shoppingCount = orderItems.length;
+      shoppingCount = sum;
+      print("ORDERITEMS$orderItems");
     });
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 
 import '../models/home_store_model.dart';
 
@@ -97,7 +97,7 @@ Widget hotSalesCard(BuildContext context, StoreItem item){
           Text(item.subtitle, style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
           SizedBox(height: 14,),
           ElevatedButton(onPressed: (){
-            widget.funcAddItem(item);
+            widget.funcAddItem(item.id.toString());
           },
               style: ElevatedButton.styleFrom(
                   primary: Color.fromRGBO(243,98,35, 1),

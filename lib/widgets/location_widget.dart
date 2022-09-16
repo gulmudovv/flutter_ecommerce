@@ -60,13 +60,13 @@ class _LocalWidgetState extends State<LocalWidget> {
           color: Colors.grey,
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width / 11,
+          width: MediaQuery.of(context).size.width / 6,
         ),
-        IconButton(
-            onPressed: () {
+        GestureDetector(
+            onTap: () {
               bottomsheets(context);
             },
-            icon: Icon(
+            child: Icon(
               Icons.filter_alt_outlined,
               size: 18,
             )),

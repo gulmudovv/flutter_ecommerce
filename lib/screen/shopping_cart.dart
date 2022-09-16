@@ -81,8 +81,8 @@ class _ShoppingCardState extends State<ShoppingCard> {
             decoration: BoxDecoration(
               color: AppColor.mainDarkBlue,
               borderRadius: BorderRadius.only(
-                topRight: Radius.circular(40),
-                topLeft: Radius.circular(40),
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
               ),
             ),
             child: ListView(
@@ -97,8 +97,6 @@ class _ShoppingCardState extends State<ShoppingCard> {
                     child: ListView(children: [
                       _orderItem('assets/1.jpg', 'Samsung Ultra 22', 3000),
                       _orderItem('assets/iphone.jpeg', 'Apple 12', 5000),
-                      _orderItem('assets/1.jpg', 'Samsung Ultra 22', 3000),
-                      _orderItem('assets/iphone.jpeg', 'Apple 12', 5000)
                     ]),
                   ),
                 ),
@@ -238,7 +236,7 @@ class _ShoppingCardState extends State<ShoppingCard> {
           Expanded(child: Container()),
           Container(
             width: 22,
-            height: 75,
+            height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Color.fromRGBO(46, 46, 67, 1),
@@ -265,12 +263,15 @@ class _ShoppingCardState extends State<ShoppingCard> {
               ],
             ),
           ),
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
+          SizedBox(
+            width: 10,
+          ),
+          InkWell(
+              onTap: () {},
+              child: Icon(
                 Icons.delete_outlined,
-                color: Colors.grey,
-                size: 18,
+                color: Color.fromRGBO(46, 46, 67, 1),
+                size: 20,
               ))
         ],
       ),
