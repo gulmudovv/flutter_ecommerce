@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/app_colors.dart';
 import 'package:ecommerce/models/product_detail_model.dart';
-import 'package:ecommerce/screen/shopping_cart.dart';
+import 'package:ecommerce/screen/shopping_cart_page.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/hex_color.dart';
@@ -79,10 +79,10 @@ class _DetailPageState extends State<DetailPage> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      height: 340,
+                      height: 320,
                       child: ListView(
                         physics: PageScrollPhysics(),
-                        padding: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(top: 10),
                         children: [
                           CarouselSlider(
                             items: [
@@ -117,7 +117,7 @@ class _DetailPageState extends State<DetailPage> {
                               enableInfiniteScroll: true,
                               autoPlayAnimationDuration:
                                   Duration(milliseconds: 800),
-                              viewportFraction: 0.8,
+                              viewportFraction: 0.75,
                             ),
                           )
                         ],
@@ -209,38 +209,78 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                               ],
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Shop",
-                                    style: TextStyle(
-                                        color: AppColor.mainDarkBlue,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                                GestureDetector(
+                                  onTap: () => print('tapped'),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(bottom: 1.0),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: 3.3,
+                                                color: AppColor.mainLigthRed))),
+                                    child: Text(
+                                      'Shop',
+                                      style: TextStyle(
+                                          color: AppColor.mainDarkBlue,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    width: 80,
+                                    alignment: Alignment.center,
                                   ),
                                 ),
-                                TextButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Details",
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 20,
+                                GestureDetector(
+                                  onTap: () => print('tapped'),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(bottom: 1.0),
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                            width: 3.3, color: Colors.white),
                                       ),
-                                    )),
-                                TextButton(
-                                    onPressed: () {},
+                                    ),
                                     child: Text(
-                                      "Features",
+                                      'Details',
                                       style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 20,
+                                          color: Colors.grey,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal),
+                                    ),
+                                    width: 80,
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () => print('tapped'),
+                                  child: Container(
+                                    padding: const EdgeInsets.only(bottom: 1.0),
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                            width: 3.3, color: Colors.white),
                                       ),
-                                    )),
+                                    ),
+                                    child: Text(
+                                      'Features',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal),
+                                    ),
+                                    width: 80,
+                                    alignment: Alignment.center,
+                                  ),
+                                ),
                               ],
+                            ),
+                            SizedBox(
+                              height: 20,
                             ),
                             Row(
                               children: [
@@ -317,10 +357,10 @@ class _DetailPageState extends State<DetailPage> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 150),
+                              padding: const EdgeInsets.only(right: 100),
                               child: Text("Select color and capacity",
                                   style: TextStyle(
                                       color: AppColor.mainDarkBlue,
@@ -328,7 +368,7 @@ class _DetailPageState extends State<DetailPage> {
                                       fontWeight: FontWeight.bold)),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Row(
                               children: [
@@ -394,7 +434,7 @@ class _DetailPageState extends State<DetailPage> {
                               ],
                             ),
                             SizedBox(
-                              height: 10,
+                              height: MediaQuery.of(context).size.height / 50,
                             ),
                             Container(
                                 alignment: Alignment.center,

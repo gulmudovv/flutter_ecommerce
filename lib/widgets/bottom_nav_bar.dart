@@ -1,7 +1,7 @@
 import 'package:ecommerce/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../screen/shopping_cart.dart';
+import '../screen/shopping_cart_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   int shoppingItemCount = 0;
@@ -16,7 +16,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(20),
       child: Stack(children: [
         BottomNavigationBar(
           onTap: (id) {
@@ -33,7 +33,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           items: [
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.only(left: 35, top: 15, bottom: 0),
+                  padding: const EdgeInsets.only(left: 35, top: 10),
                   child: Icon(
                     Icons.more_horiz,
                   ),
@@ -42,21 +42,21 @@ class _BottomNavBarState extends State<BottomNavBar> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 20),
+                  padding: const EdgeInsets.only(top: 10, left: 20),
                   child: Icon(Icons.shopping_bag_outlined),
                 ),
                 label: ""),
             BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Icon(Icons.favorite_border),
                 ),
                 label: ""),
             BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Padding(
-                  padding: const EdgeInsets.only(top: 15, right: 40),
+                  padding: const EdgeInsets.only(top: 10,right: 40),
                   child: Icon(Icons.person_outline),
                 ),
                 label: ""),
