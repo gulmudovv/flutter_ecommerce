@@ -71,7 +71,7 @@ class _BestSellerWidgetState extends State<BestSellerWidget> {
                       }),
                 );
               } else {
-                return Container();
+                return Center(child: CircularProgressIndicator());
               }
             }),
       ],

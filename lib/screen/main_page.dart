@@ -79,7 +79,6 @@ class _MainPageState extends State<MainPage> {
     }
     setState(() {
       shoppingCount = sum;
-      print("ORDERITEMS$orderItems");
     });
   }
 }

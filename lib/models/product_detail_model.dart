@@ -53,7 +53,6 @@ Future<ProductDetail> fetchProductDetail() async {
       'https://run.mocky.io/v3/6c14c560-15c6-4248-b9d2-b4508df7d4f5'));
   if (response.statusCode == 200) {
     Map<String, dynamic> map = json.decode(response.body);
-    var obj = ProductDetail.fromJson(map);
     return ProductDetail.fromJson(map);
   } else {
     throw Exception('Failed to load post');
