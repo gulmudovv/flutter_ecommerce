@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce/app_colors.dart';
 import 'package:ecommerce/models/product_detail_model.dart';
 import 'package:ecommerce/screen/shopping_cart_page.dart';
+import 'package:ecommerce/utils/custom_toggle_button.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/hex_color.dart';
@@ -12,6 +13,11 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  List<bool> isSelectedButton = [true, false, false];
+  List<bool> isSelectedColorItem = [true, false];
+  List<bool> isSelectedMemory = [true, false];
+  bool isFavorite = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +92,6 @@ class _DetailPageState extends State<DetailPage> {
                         padding: EdgeInsets.only(top: 10),
                         children: [
                           CarouselSlider(
-
                             items: [
                               Container(
                                 width: 300,
@@ -151,18 +156,24 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 IconButton(
                                   onPressed: () {
-                                    Navigator.pop(context);
+                                    setState(() {
+                                      isFavorite = !isFavorite;
+                                    });
                                   },
                                   icon: Container(
                                     width: 45,
                                     height: 45,
                                     decoration: BoxDecoration(
                                       color: AppColor.mainDarkBlue,
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Icon(
-                                      Icons.favorite_border,
-                                      color: Colors.white,
+                                      isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color: isFavorite
+                                          ? AppColor.mainLigthRed
+                                          : Colors.white,
                                       size: 18,
                                     ),
                                   ),
@@ -218,62 +229,94 @@ class _DetailPageState extends State<DetailPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GestureDetector(
-                                  onTap: () => print('tapped'),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(0, isSelectedButton);
+                                    });
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.only(bottom: 1.0),
                                     decoration: BoxDecoration(
                                         border: Border(
                                             bottom: BorderSide(
                                                 width: 3.3,
-                                                color: AppColor.mainLigthRed))),
+                                                color: isSelectedButton[0]
+                                                    ? AppColor.mainLigthRed
+                                                    : Colors.white))),
                                     child: Text(
                                       'Shop',
                                       style: TextStyle(
-                                          color: AppColor.mainDarkBlue,
+                                          color: isSelectedButton[0]
+                                              ? AppColor.mainDarkBlue
+                                              : Colors.grey,
                                           fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: isSelectedButton[0]
+                                              ? FontWeight.bold
+                                              : FontWeight.normal),
                                     ),
                                     width: 80,
                                     alignment: Alignment.center,
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () => print('tapped'),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(1, isSelectedButton);
+                                    });
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.only(bottom: 1.0),
                                     decoration: BoxDecoration(
                                       border: Border(
                                         bottom: BorderSide(
-                                            width: 3.3, color: Colors.white),
+                                            width: 3.3,
+                                            color: isSelectedButton[1]
+                                                ? AppColor.mainLigthRed
+                                                : Colors.white),
                                       ),
                                     ),
                                     child: Text(
                                       'Details',
                                       style: TextStyle(
-                                          color: Colors.grey,
+                                          color: isSelectedButton[1]
+                                              ? AppColor.mainDarkBlue
+                                              : Colors.grey,
                                           fontSize: 20,
-                                          fontWeight: FontWeight.normal),
+                                          fontWeight: isSelectedButton[1]
+                                              ? FontWeight.bold
+                                              : FontWeight.normal),
                                     ),
                                     width: 80,
                                     alignment: Alignment.center,
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: () => print('tapped'),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(2, isSelectedButton);
+                                    });
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.only(bottom: 1.0),
                                     decoration: BoxDecoration(
                                       border: Border(
                                         bottom: BorderSide(
-                                            width: 3.3, color: Colors.white),
+                                            width: 3.3,
+                                            color: isSelectedButton[2]
+                                                ? AppColor.mainLigthRed
+                                                : Colors.white),
                                       ),
                                     ),
                                     child: Text(
                                       'Features',
                                       style: TextStyle(
-                                          color: Colors.grey,
+                                          color: isSelectedButton[2]
+                                              ? AppColor.mainDarkBlue
+                                              : Colors.grey,
                                           fontSize: 20,
-                                          fontWeight: FontWeight.normal),
+                                          fontWeight: isSelectedButton[2]
+                                              ? FontWeight.bold
+                                              : FontWeight.normal),
                                     ),
                                     width: 80,
                                     alignment: Alignment.center,
@@ -374,64 +417,112 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             Row(
                               children: [
-                                Container(
-                                  height: 35,
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                      color: HexColor(snapshot.data!.colors[0]),
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.check,
-                                    color: Colors.white,
+                                GestureDetector(
+                                  child: Container(
+                                    height: 35,
+                                    width: 35,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            HexColor(snapshot.data!.colors[0]),
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.check,
+                                      color: isSelectedColorItem[0]
+                                          ? Colors.white
+                                          : Colors.transparent,
+                                    ),
                                   ),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(
+                                          0, isSelectedColorItem);
+                                    });
+                                  },
                                 ),
                                 SizedBox(
                                   width: 20,
                                 ),
-                                Container(
-                                  height: 35,
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                      color: HexColor(snapshot.data!.colors[1]),
-                                      shape: BoxShape.circle),
+                                GestureDetector(
+                                  child: Container(
+                                    height: 35,
+                                    width: 35,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            HexColor(snapshot.data!.colors[1]),
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.check,
+                                      color: isSelectedColorItem[1]
+                                          ? Colors.white
+                                          : Colors.transparent,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(
+                                          1, isSelectedColorItem);
+                                    });
+                                  },
                                 ),
                                 SizedBox(
                                   width: 65,
                                 ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  height: 25,
-                                  width: 65,
-                                  decoration: BoxDecoration(
-                                    color: AppColor.mainLigthRed,
-                                    borderRadius: BorderRadius.circular(8),
+                                GestureDetector(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    height: 25,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: isSelectedMemory[0]
+                                          ? AppColor.mainLigthRed
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Text(
+                                      "128 GB",
+                                      style: TextStyle(
+                                          color: isSelectedMemory[0]
+                                              ? Colors.white
+                                              : Colors.grey,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
                                   ),
-                                  child: Text(
-                                    "128 GB",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12),
-                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(0, isSelectedMemory);
+                                    });
+                                  },
                                 ),
                                 SizedBox(
                                   width: 20,
                                 ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  height: 25,
-                                  width: 65,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
+                                GestureDetector(
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    height: 25,
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                      color: isSelectedMemory[1]
+                                          ? AppColor.mainLigthRed
+                                          : Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Text(
+                                      "256 GB",
+                                      style: TextStyle(
+                                          color: isSelectedMemory[1]
+                                              ? Colors.white
+                                              : Colors.grey,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12),
+                                    ),
                                   ),
-                                  child: Text(
-                                    "256 GB",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12),
-                                  ),
+                                  onTap: () {
+                                    setState(() {
+                                      toggButChangeState(1, isSelectedMemory);
+                                    });
+                                  },
                                 ),
                               ],
                             ),
