@@ -12,6 +12,7 @@ class _ShoppingCardState extends State<ShoppingCard> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Padding(
             padding: EdgeInsets.only(top: 15, left: 10, right: 10),
@@ -95,6 +96,8 @@ class _ShoppingCardState extends State<ShoppingCard> {
                   child: Container(
                     height: MediaQuery.of(context).size.height - 480,
                     child: ListView(children: [
+                      _orderItem('assets/1.jpg', 'Samsung Ultra 22', 3000),
+                      _orderItem('assets/iphone.jpeg', 'Apple 12', 5000),
                       _orderItem('assets/1.jpg', 'Samsung Ultra 22', 3000),
                       _orderItem('assets/iphone.jpeg', 'Apple 12', 5000),
                     ]),

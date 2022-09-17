@@ -17,6 +17,7 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(236, 240, 241, 1),
       body: ListView(
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Padding(
             padding: EdgeInsets.only(top: 15, left: 10, right: 10),
@@ -85,6 +86,7 @@ class _DetailPageState extends State<DetailPage> {
                         padding: EdgeInsets.only(top: 10),
                         children: [
                           CarouselSlider(
+
                             items: [
                               Container(
                                 width: 300,
