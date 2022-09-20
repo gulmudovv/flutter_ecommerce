@@ -382,13 +382,16 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                                 Column(
                                   children: [
-                                    Image.asset(
-                                      "assets/sd.png",
-                                      scale: 8,
-                                      color: Colors.grey,
+                                    Transform.rotate(
+                                      child: Image.asset(
+                                        "assets/sd.png",
+                                        scale: 8,
+                                        color: Colors.grey,
+                                      ),
+                                      angle: -1.57079632679,
                                     ),
                                     SizedBox(
-                                      height: 5,
+                                      height: 4,
                                     ),
                                     Text(
                                       snapshot.data!.sd,
