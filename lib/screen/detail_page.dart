@@ -165,6 +165,14 @@ class _DetailPageState extends State<DetailPage> {
                                     height: 45,
                                     decoration: BoxDecoration(
                                       color: AppColor.mainDarkBlue,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.3),
+                                          spreadRadius: 2,
+                                          blurRadius: 2,
+                                          offset: isFavorite?Offset(3, 1):Offset(1, 3), // changes position of shadow
+                                        ),
+                                      ],
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Icon(
@@ -174,7 +182,7 @@ class _DetailPageState extends State<DetailPage> {
                                       color: isFavorite
                                           ? AppColor.mainLigthRed
                                           : Colors.white,
-                                      size: 18,
+                                      size:18,
                                     ),
                                   ),
                                 ),
