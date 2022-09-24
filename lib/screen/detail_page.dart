@@ -579,8 +579,12 @@ class _DetailPageState extends State<DetailPage> {
                   ],
                 );
               } else {
-                return Center(
-                  child: CircularProgressIndicator(),
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height/2.5,),
+                    CircularProgressIndicator(),
+                  ],
                 );
               }
             },

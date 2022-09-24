@@ -59,9 +59,7 @@ class _LocalWidgetState extends State<LocalWidget> {
           Icons.keyboard_arrow_down,
           color: Colors.grey,
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 6,
-        ),
+        Expanded(child: Container()),
         GestureDetector(
             onTap: () {
               bottomsheets(context);
